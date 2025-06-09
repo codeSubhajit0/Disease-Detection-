@@ -306,6 +306,7 @@ def initialize_gemini():
         return None
 
 
+
 def get_disease_remedy(disease_name, crop_type="plant"):
     """Get remedy suggestions for detected disease using Gemini API"""
     try:
@@ -743,7 +744,7 @@ elif app_mode == "TOMATO Disease Recognition":
             if st.button("🔍 Get Remedy Suggestions", key="tomato_remedy_btn", use_container_width=True):
                 with st.spinner("Fetching remedy information..."):
                     remedy = get_disease_remedy(st.session_state.tomato_prediction, st.session_state.tomato_crop_type)
-                    st.session_state.tomato_remedy = remedy
+                    st.session_state.tomato_remedy = remedy 
             
             if 'tomato_remedy' in st.session_state:
                 st.markdown(f"""
@@ -770,7 +771,7 @@ elif app_mode == "TOMATO Disease Recognition":
                 if user_question.strip():
                     with st.spinner("Processing your question..."):
                         answer = get_qa_response(
-                            user_question, 
+                            user_question,
                             st.session_state.tomato_prediction, 
                             st.session_state.tomato_crop_type
                         )
