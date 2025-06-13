@@ -13,6 +13,53 @@ st.markdown("""
         display: none;
     }
     
+    /* Make content take full width on larger screens */
+    @media (min-width: 769px) {
+        .stVerticalBlock {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+        
+        .block-container {
+            padding-left: 2rem !important;
+            padding-right: 2rem !important;
+            max-width: 100% !important;
+        }
+    }
+    
+    /* Home page image sizing */
+    .home-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 2rem 0;
+    }
+    
+    .home-image-container img {
+        max-width: 600px;
+        max-height: 400px;
+        width: auto;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Mobile responsiveness for home image */
+    @media (max-width: 768px) {
+        .home-image-container img {
+            max-width: 100%;
+            max-height: 300px;
+        }
+    }
+    
+    /* Tablet responsiveness for home image */
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .home-image-container img {
+            max-width: 500px;
+            max-height: 350px;
+        }
+    }
+    
     /* Custom responsive navigation */
     .nav-container {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -93,17 +140,29 @@ st.markdown("""
         .nav-button {
             flex: 1;
             min-width: 140px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
     
-    /* Desktop responsiveness */
+    /* Desktop responsiveness - uniform button sizes */
     @media (min-width: 1025px) {
         .nav-buttons {
             justify-content: center;
+            gap: 1rem;
         }
         
         .nav-button {
-            min-width: 160px;
+            width: 200px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            padding: 0;
+            flex-shrink: 0;
         }
     }
     
@@ -142,7 +201,7 @@ st.markdown("""
     
     /* Potato header styling */
     .potato-header {
-        background: linear-gradient(90deg, #8B4513, #A0522D);
+        background: linear-gradient(90deg, #C2B280, #4CAF50);
         color: white;
         padding: 1rem;
         border-radius: 10px;
@@ -163,7 +222,7 @@ st.markdown("""
     
     /* Tomato success message styling */
     .tomato-success-message {
-        background: linear-gradient(135deg, #FF6B6B, #EE5A24);
+        background: linear-gradient(90deg, #C2B280, #4CAF50);
         color: white;
         padding: 1rem;
         border-radius: 10px;
@@ -173,7 +232,7 @@ st.markdown("""
     
     /* Potato success message styling */
     .potato-success-message {
-        background: linear-gradient(135deg, #8B4513, #A0522D);
+        background: linear-gradient(90deg, #C2B280, #4CAF50);
         color: white;
         padding: 1rem;
         border-radius: 10px;
@@ -371,7 +430,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Navigation buttons
-pages = ["Home", "About", "Disease Recognition", "POTATO Disease Recognition", "TOMATO Disease Recognition", "RICE Disease Recognition"]
+pages = ["Home", "About", "POTATO & PAPER BELL Disease Recognition", "TOMATO Disease Recognition", "RICE Disease Recognition"]
 cols = st.columns(len(pages))
 
 for i, page in enumerate(pages):
@@ -394,7 +453,7 @@ if app_mode == "Home":
     # Display image if available
     try:
         image_path = "images.jpg"
-        st.image(image_path, use_column_width=True)
+        st.image(image_path, use_container_width=True)
     except:
         st.info("📸 Upload an image to get started!")
     
@@ -418,7 +477,7 @@ if app_mode == "Home":
     - **🥔 Potato Disease Recognition** - Specialized for potato plant diseases
     - **🍅 Tomato Disease Recognition** - Specialized for tomato plant diseases  
     - **🌾 Rice Disease Recognition** - Specialized for rice plant diseases
-    - **🌱 General Disease Recognition** - For other common plant diseases
+    - **🫑 Paper bell Disease Recognition** - Specialized for paper bell plant diseases
 
     ### 📚 About Us
     Learn more about the project, our team, and our goals on the **About** page.
@@ -448,7 +507,7 @@ elif app_mode == "About":
     ## 🎯 Model Performance
     Our system includes specialized models for different crops:
     
-    ### 🥔 Potato Disease Model
+    ### 🥔 POTATO &  🫑 PAPER BELL Disease Model
     - **Potato Early Blight**
     - **Potato Late Blight**
     - **Potato Healthy**
@@ -475,11 +534,6 @@ elif app_mode == "About":
     - **Rice Tungro**
     - **Rice Healthy**
     
-    ### 🌱 General Plant Disease Model
-    - **Bacterial Leaf Blight**
-    - **Brown Spot**
-    - **Leaf Smut**
-    
     ## 🔬 Technology Stack
     - **TensorFlow/Keras** for deep learning
     - **Streamlit** for web interface
@@ -487,11 +541,11 @@ elif app_mode == "About":
     - **Convolutional Neural Networks** for classification
     """)
 
-elif app_mode == "POTATO Disease Recognition":
-    st.markdown('<div class="potato-header"><h1>🥔 Potato Disease Recognition</h1></div>', unsafe_allow_html=True)
+elif app_mode == "POTATO & PAPER BELL Disease Recognition":
+    st.markdown('<div class="potato-header"><h1>🥔 POTATO &  🫑 PAPER BELL Disease Recognition</h1></div>', unsafe_allow_html=True)
     
     st.markdown("""
-    ## Upload a potato leaf image for disease detection
+    ## Upload a potato or paper bell leaf image for disease detection
     Our specialized potato model can identify:
     - **🦠 Pepper Bell Bacterial Spot**
     - **✅ Pepper Bell Healthy**
@@ -507,19 +561,19 @@ elif app_mode == "POTATO Disease Recognition":
         
         with col1:
             if st.button("🖼️ Show Image", use_container_width=True, key="potato_show"):
-                st.image(test_image, caption="Uploaded Potato Leaf Image", use_column_width=True)
+                st.image(test_image, caption="Uploaded Potato or paper bell Leaf Image", use_container_width=True)
         
         with col2:
             if st.button("🔍 Predict", use_container_width=True, key="potato_predict"):
-                with st.spinner('Analyzing potato leaf image...'):
+                with st.spinner('Analyzing potato or paper bell leaf image...'):
                     try:
                         result_index = model_prediction(test_image, 'newtestmodel1.keras')
-                        class_name = ['Pepper,_bell___Bacterial_spot', 'Pepper,_bell___healthy', 
+                        class_name = ['Pepper_bell___Bacterial_spot', 'Pepper_bell___healthy', 
                                     'Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy']
                         
                         st.markdown(f"""
                         <div class="potato-success-message">
-                            <h3>🎯 Potato Disease Prediction Result</h3>
+                            <h3>🎯 Potato or paper bell Disease Prediction Result</h3>
                             <p>Model is predicting it's a <strong>{class_name[result_index]}</strong></p>
                         </div>
                         """, unsafe_allow_html=True)
@@ -605,7 +659,7 @@ elif app_mode == "RICE Disease Recognition":
         
         with col1:
             if st.button("🖼️ Show Image", use_container_width=True, key="rice_show"):
-                st.image(test_image, caption="Uploaded Rice Leaf Image", use_column_width=True)
+                st.image(test_image, caption="Uploaded Rice Leaf Image", use_container_width=True)
         
         with col2:
             if st.button("🔍 Predict", use_container_width=True, key="rice_predict"):
@@ -707,7 +761,7 @@ elif app_mode == "TOMATO Disease Recognition":
         
         with col1:
             if st.button("🖼️ Show Image", use_container_width=True, key="tomato_show"):
-                st.image(test_image, caption="Uploaded Tomato Leaf Image", use_column_width=True)
+                st.image(test_image, caption="Uploaded Tomato Leaf Image", use_container_width=True)
         
         with col2:
             if st.button("🔍 Predict", use_container_width=True, key="tomato_predict"):
@@ -786,99 +840,6 @@ elif app_mode == "TOMATO Disease Recognition":
                 </div>
                 """, unsafe_allow_html=True)
 
-# Disease Recognition Page
-elif app_mode == "Disease Recognition":
-    st.markdown('<div class="custom-header"><h1>🔬 General Disease Recognition</h1></div>', unsafe_allow_html=True)
-    
-    st.markdown("""
-    ## Upload a plant leaf image for disease detection
-    Our general model can identify:
-    - **🦠 Bacterial Leaf Blight**
-    - **🟤 Brown Spot**
-    - **🍃 Leaf Smut**
-    """)
-    
-    test_image = st.file_uploader("Choose a Plant Leaf Image:", type=['jpg', 'jpeg', 'png'], key="general_uploader")
-    
-    if test_image is not None:
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            if st.button("🖼️ Show Image", use_container_width=True, key="general_show"):
-                st.image(test_image, caption="Uploaded Plant Leaf Image", use_column_width=True)
-        
-        with col2:
-            if st.button("🔍 Predict", use_container_width=True, key="general_predict"):
-                with st.spinner('Analyzing plant leaf image...'):
-                    try:
-                        result_index = model_prediction(test_image)
-                        class_name = ['Bacterial leaf blight', 'Brown spot', 'Leaf smut']
-                        
-                        st.markdown(f"""
-                        <div class="success-message">
-                            <h3>🎯 Plant Disease Prediction Result</h3>
-                            <p>Model is predicting it's a <strong>{class_name[result_index]}</strong></p>
-                        </div>
-                        """, unsafe_allow_html=True)
-                        
-                        # Store prediction result for remedy and Q&A
-                        st.session_state.general_prediction = class_name[result_index]
-                        st.session_state.general_crop_type = "plant"
-                        
-                    except Exception as e:
-                        st.error(f"Error in prediction: {str(e)}")
-        
-        # Remedy Section
-        if 'general_prediction' in st.session_state:
-            st.markdown("""
-            <div class="remedy-section">
-                <div class="remedy-title">💊 Treatment & Prevention Remedies</div>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            if st.button("🔍 Get Remedy Suggestions", key="general_remedy_btn", use_container_width=True):
-                with st.spinner("Fetching remedy information..."):
-                    remedy = get_disease_remedy(st.session_state.general_prediction, st.session_state.general_crop_type)
-                    st.session_state.general_remedy = remedy
-            
-            if 'general_remedy' in st.session_state:
-                st.markdown(f"""
-                <div class="remedy-section">
-                    <div class="remedy-content">{st.session_state.general_remedy}</div>
-                </div>
-                """, unsafe_allow_html=True)
-        
-        # Q&A Section
-        if 'general_prediction' in st.session_state:
-            st.markdown("""
-            <div class="qa-section">
-                <div class="qa-title">❓ Ask Additional Questions</div>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            user_question = st.text_area(
-                "Ask any question about this disease or plant farming:",
-                placeholder="e.g., How to improve soil conditions to prevent this disease?",
-                key="general_question"
-            )
-            
-            if st.button("🤔 Get Answer", key="general_qa_btn", use_container_width=True):
-                if user_question.strip():
-                    with st.spinner("Processing your question..."):
-                        answer = get_qa_response(
-                            user_question, 
-                            st.session_state.general_prediction, 
-                            st.session_state.general_crop_type
-                        )
-                        st.session_state.general_answer = answer
-                else:
-                    st.warning("Please enter a question first.")
-            
-            if 'general_answer' in st.session_state:
-                st.markdown(f"""
-                <div class="qa-section">
-                    <div class="qa-answer">{st.session_state.general_answer}</div>
-                </div>
-                """, unsafe_allow_html=True)
+
 
 st.markdown('</div>', unsafe_allow_html=True)
