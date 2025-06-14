@@ -333,6 +333,129 @@ st.markdown("""
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
+    
+    /* Team Section Styling */
+    .team-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 3rem 2rem;
+        border-radius: 15px;
+        margin: 2rem 0;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    
+    .team-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 2rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .team-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        flex-wrap: wrap;
+        margin: 2rem 0;
+    }
+    
+    .team-member {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: transform 0.3s ease;
+    }
+    
+    .team-member:hover {
+        transform: translateY(-10px);
+    }
+    
+    .team-avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        font-weight: bold;
+        color: white;
+        overflow: hidden;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        transition: all 0.3s ease;
+    }
+    
+    .team-avatar:hover {
+        border-color: white;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        transform: scale(1.05);
+    }
+    
+    .team-name {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: white;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    .team-role {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.8);
+        font-style: italic;
+    }
+    
+    /* Mobile responsiveness for team section */
+    @media (max-width: 768px) {
+        .team-container {
+            gap: 2rem;
+        }
+        
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            font-size: 2.5rem;
+        }
+        
+        .team-title {
+            font-size: 2rem;
+        }
+    }
+    
+    /* Tablet responsiveness for team section */
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .team-container {
+            gap: 2.5rem;
+        }
+        
+        .team-avatar {
+            width: 130px;
+            height: 130px;
+        }
+    }
+    
+    /* Different gradient colors for each team member */
+    .team-avatar.member-1 {
+        background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+    }
+    
+    .team-avatar.member-2 {
+        background: linear-gradient(135deg, #4ECDC4, #44A08D);
+    }
+    
+    .team-avatar.member-3 {
+        background: linear-gradient(135deg, #A8E6CF, #3D8B37);
+    }
+    
+    .team-avatar.member-4 {
+        background: linear-gradient(135deg, #FFB6C1, #FF69B4);
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -540,6 +663,31 @@ elif app_mode == "About":
     - **Computer Vision** for image processing
     - **Convolutional Neural Networks** for classification
     """)
+    
+    # Team Section
+    st.markdown("""
+    <div class="team-section">
+        <div class="team-title">👥 Our Team</div>
+        <div class="team-container">
+            <div class="team-member">
+                <div class="team-avatar member-1"><img src="https://raw.githubusercontent.com/codeSubhajit0/image/6e662d9fc3b99fbb6e13a986316bcbfa8d3c65b2/sankhasubhra.jpeg" style="width: 100%; height: 100%; object-fit: cover;" /></div>
+                <div class="team-name">Sankhasubhra Monda</div>
+            </div>
+            <div class="team-member">
+                <div class="team-avatar member-2"><img src="https://raw.githubusercontent.com/codeSubhajit0/image/main/subhajit.jpeg" style="width: 100%; height: 100%; object-fit: cover;"/></div>
+                <div class="team-name">Subhajit Karmakar</div>
+            </div>
+            <div class="team-member">
+                <div class="team-avatar member-3"><img src="https://raw.githubusercontent.com/codeSubhajit0/image/main/ayon.jpg" style="width: 100%; height: 100%; object-fit: cover;"/></div>
+                <div class="team-name">Ayon Chakraborty</div>
+            </div>
+            <div class="team-member">
+                <div class="team-avatar member-4"><img src="https://raw.githubusercontent.com/codeSubhajit0/image/main/suman.jpeg" style="width: 100%; height: 100%; object-fit: cover;"/></div>
+                <div class="team-name">Suman Kundu</div>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
 elif app_mode == "POTATO & PAPER BELL Disease Recognition":
     st.markdown('<div class="potato-header"><h1>🥔 POTATO &  🫑 PAPER BELL Disease Recognition</h1></div>', unsafe_allow_html=True)
