@@ -586,7 +586,7 @@ if app_mode == "Home":
     Our mission is to help in identifying plant diseases efficiently. Upload an image of a plant, and our system will analyze it to detect any signs of diseases. Together, let's protect our crops and ensure a healthier harvest!
 
     ### 🚀 How It Works
-    1. **📤 Upload Image:** Go to the **Disease Recognition**, **Potato Disease Recognition**, **Tomato Disease Recognition**, or **Rice Disease Recognition** page and upload an image of a plant with suspected diseases.
+    1. **📤 Upload Image:** Go to the **Potato & Paper bell Disease Recognition**, **Tomato Disease Recognition**, or **Rice Disease Recognition** page and upload an image of a plant with suspected diseases.
     2. **🔍 Analysis:** Our system will process the image using advanced algorithms to identify potential diseases.
     3. **📊 Results:** View the results and recommendations for further action.
 
